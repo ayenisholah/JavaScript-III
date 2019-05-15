@@ -23,21 +23,35 @@ GameObject.prototype.destroy = function() {
     this.healthPoints = charAttributes.healthPoints;
     GameObject.call(this, charAttributes);
     CharacterStats.takeDamage = charAttributes.takeDamage;
+    CharacterStats.prototype = Object.create(GameObject.prototype)
     this.takeDamage = function() {
       return `${this.name} took damage`;
     }
   }
 
-/*
-  === Humanoid (Having an appearance or character resembling that of a human.) ===
-  * team
-  * weapons
-  * language
-  * greet() // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
+
+  // === Humanoid (Having an appearance or character resembling that of a human.) ===
+
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
-*/
+
  
+function Humanoid(humanoidAttributes) {
+  this.name = humanoidAttributes.name;
+  this.team = humanoidAttributes.team;
+  this.weapons = humanoidAttributes.weapons;
+  this.language = humanoidAttributes.language;
+  this.dimensions = humanoidAttributes.dimensions;
+  this.greet = function() {
+    return `${this.name} offers a greeting in ${this.language}`
+  }
+
+}
+
+//====== Pseudoclassical Inheritance ======//
+
+
+
 
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
